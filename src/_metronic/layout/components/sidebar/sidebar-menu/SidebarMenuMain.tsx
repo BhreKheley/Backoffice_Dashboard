@@ -102,6 +102,12 @@ const SidebarMenuMain = () => {
         title='User management'
         fontIcon='bi-layers'
       />
+      <SidebarMenuItem
+        to='/apps/list-karyawan/karyawan'
+        icon='abstract-28'
+        title='Karyawan'
+        fontIcon='bi-layers'
+      />
       <div className='menu-item'>
         <a
           target='_blank'
