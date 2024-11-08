@@ -1,39 +1,41 @@
-import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../../_metronic/layout/core'
-import {UsersListWrapper} from './users-list/UsersList'
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
+import { PageLink, PageTitle } from "../../../../_metronic/layout/core";
+import { EmployeesListWrapper } from "./users-list/EmployeesList";
 
 const usersBreadcrumbs: Array<PageLink> = [
   {
-    title: 'Karyawan',
-    path: '/apps/karyawan/karyawan',
+    title: "Karyawan",
+    path: "/apps/karyawan/karyawan",
     isSeparator: false,
     isActive: false,
   },
   {
-    title: '',
-    path: '',
+    title: "",
+    path: "",
     isSeparator: true,
     isActive: false,
   },
-]
+];
 
 const KaryawanPage = () => {
   return (
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path='karyawan'
+          path="karyawan"
           element={
             <>
-              <PageTitle breadcrumbs={usersBreadcrumbs}>Users list</PageTitle>
-              <UsersListWrapper />
+              <PageTitle breadcrumbs={usersBreadcrumbs}>
+                Karyawan list
+              </PageTitle>
+              <EmployeesListWrapper />
             </>
           }
         />
       </Route>
-      <Route index element={<Navigate to='/apps/user-management/users' />} />
+      <Route index element={<Navigate to="/apps/user-management/users" />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default KaryawanPage
+export default KaryawanPage;

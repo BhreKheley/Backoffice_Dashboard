@@ -1,27 +1,22 @@
-import {ID, Response} from '../../../../../../_metronic/helpers'
-export type User = {
+import { ID, Response } from '../../../../../../_metronic/helpers'
+
+export type Employee = {
   id?: ID
-  name?: string
-  avatar?: string
-  email?: string
-  position?: string
-  role?: string
-  last_login?: string
-  two_steps?: boolean
-  joined_day?: string
-  online?: boolean
-  initials?: {
-    label: string
-    state: string
-  }
+  user_id?: ID
+  full_name?: string
+  phone?: string
+  position_id?: ID
+  division_id?: ID
+  created_at?: string
+  updated_at?: string
+  is_active: boolean
 }
 
-export type UsersQueryResponse = Response<Array<User>>
+export type EmployeesQueryResponse = Response<Array<Employee>>
 
-export const initialUser: User = {
-  avatar: 'avatars/300-6.jpg',
-  position: 'Art Director',
-  role: 'Administrator',
-  name: '',
-  email: '',
+export const initialEmployee: Employee = {
+  user_id: 0,
+  full_name: '',
+  phone: '',
+  is_active: true
 }

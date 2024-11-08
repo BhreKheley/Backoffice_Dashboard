@@ -1,64 +1,53 @@
 import axios, { AxiosResponse } from "axios";
 import { ID, Response } from "../../../../../../_metronic/helpers";
-import { User, UsersQueryResponse } from "./_models";
-
-// const API_URL = import.meta.env.VITE_APP_THEME_API_URL;
-// const USER_URL = `${API_URL}/user`;
-// const GET_USERS_URL = `${API_URL}/users/query`;
-
-// const getUsers = (query: string): Promise<UsersQueryResponse> => {
-//   return axios
-//     .get(`${GET_USERS_URL}?${query}`)
-//     .then((d: AxiosResponse<UsersQueryResponse>) => d.data);
-// };
+import { Employee, EmployeesQueryResponse } from "./_models";
 
 const API_URL = import.meta.env.VITE_APP_API_URL_LOCAL;
-const USER_URL = `${API_URL}/user/`;
-const GET_USERS_URL = `${API_URL}/users/query`;
-console.log(USER_URL);
+const EMPLOYEE_URL = `${API_URL}/employee`;
+console.log(EMPLOYEE_URL);
 
-const getUsers = (query: string): Promise<UsersQueryResponse> => {
+const getEmployees = (query: string): Promise<EmployeesQueryResponse> => {
   return axios
-    .get(`${USER_URL}`)
-    .then((d: AxiosResponse<UsersQueryResponse>) => d.data);
+    .get(`${EMPLOYEE_URL}/`)
+    .then((d: AxiosResponse<EmployeesQueryResponse>) => d.data);
 };
 
 
-const getUserById = (id: ID): Promise<User | undefined> => {
+const getEmployeeById = (id: ID): Promise<Employee | undefined> => {
   return axios
-    .get(`${USER_URL}/${id}`)
-    .then((response: AxiosResponse<Response<User>>) => response.data)
-    .then((response: Response<User>) => response.data);
+    .get(`${EMPLOYEE_URL}/${id}`)
+    .then((response: AxiosResponse<Response<Employee>>) => response.data)
+    .then((response: Response<Employee>) => response.data);
 };
 
-const createUser = (user: User): Promise<User | undefined> => {
+const createEmployee = (Employee: Employee): Promise<Employee | undefined> => {
   return axios
-    .put(USER_URL, user)
-    .then((response: AxiosResponse<Response<User>>) => response.data)
-    .then((response: Response<User>) => response.data);
+    .post(EMPLOYEE_URL + "/create_employee", Employee)
+    .then((response: AxiosResponse<Response<Employee>>) => response.data)
+    .then((response: Response<Employee>) => response.data);
 };
 
-const updateUser = (user: User): Promise<User | undefined> => {
+const updateEmployee = (Employee: Employee): Promise<Employee | undefined> => {
   return axios
-    .post(`${USER_URL}/${user.id}`, user)
-    .then((response: AxiosResponse<Response<User>>) => response.data)
-    .then((response: Response<User>) => response.data);
+    .put(`${EMPLOYEE_URL}/${Employee.id}`, Employee)
+    .then((response: AxiosResponse<Response<Employee>>) => response.data)
+    .then((response: Response<Employee>) => response.data);
 };
 
-const deleteUser = (userId: ID): Promise<void> => {
-  return axios.delete(`${USER_URL}/${userId}`).then(() => {});
+const deleteEmployee = (EmployeeId: ID): Promise<void> => {
+  return axios.delete(`${EMPLOYEE_URL}/${EmployeeId}`).then(() => {});
 };
 
-const deleteSelectedUsers = (userIds: Array<ID>): Promise<void> => {
-  const requests = userIds.map((id) => axios.delete(`${USER_URL}/${id}`));
+const deleteSelectedEmployees = (EmployeeIds: Array<ID>): Promise<void> => {
+  const requests = EmployeeIds.map((id) => axios.delete(`${EMPLOYEE_URL}/${id}`));
   return axios.all(requests).then(() => {});
 };
 
 export {
-  getUsers,
-  deleteUser,
-  deleteSelectedUsers,
-  getUserById,
-  createUser,
-  updateUser,
+  getEmployees,
+  deleteEmployee,
+  deleteSelectedEmployees,
+  getEmployeeById,
+  createEmployee,
+  updateEmployee,
 };

@@ -11,11 +11,11 @@ import {
   stringifyRequestQuery,
   WithChildren,
 } from '../../../../../../_metronic/helpers'
-import {getEmployees} from './_requests'
-import {Employee} from './_models'
+import {getUsers} from './_requests'
+import {User} from './_models'
 import {useQueryRequest} from './QueryRequestProvider'
 
-const QueryResponseContext = createResponseContext<Employee>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<User>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({children}) => {
   const {state} = useQueryRequest()
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
@@ -32,9 +32,9 @@ const QueryResponseProvider: FC<WithChildren> = ({children}) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.EMPLOYEES_LIST}-${query}`, // Ganti USERS_LIST menjadi EMPLOYEES_LIST
+    `${QUERIES.USERS_LIST}-${query}`,
     () => {
-      return getEmployees(query)
+      return getUsers(query)
     },
     {cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false}
   )
@@ -50,8 +50,6 @@ const useQueryResponse = () => useContext(QueryResponseContext)
 
 const useQueryResponseData = () => {
   const {response} = useQueryResponse()
-  console.log(response);
-  
   if (!response) {
     return []
   }

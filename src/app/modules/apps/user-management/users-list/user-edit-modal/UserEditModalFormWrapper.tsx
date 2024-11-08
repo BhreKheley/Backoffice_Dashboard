@@ -25,9 +25,8 @@ const UserEditModalFormWrapper = () => {
       },
     }
   )
-
   if (!itemIdForUpdate) {
-    return <UserEditModalForm isUserLoading={isLoading} user={{id: undefined}} />
+    return <UserEditModalForm isUserLoading={isLoading} user={{id: undefined, is_active: true}} />
   }
 
   if (!isLoading && !error && user) {

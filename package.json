@@ -40,6 +40,7 @@
     "react-router-dom": "6.3.0",
     "react-select": "^5.8.0",
     "react-table": "^7.7.0",
+    "react-toastify": "^10.0.6",
     "react-topbar-progress-indicator": "4.1.1",
     "socicon": "3.0.5",
     "yup": "^1.0.0"
@@ -48,6 +49,7 @@
     "@types/bootstrap": "5.1.10",
     "@types/chart.js": "2.9.37",
     "@types/jest": "29.5.2",
+    "@types/lodash": "^4.17.13",
     "@types/node": "20.3.1",
     "@types/prismjs": "1.26.0",
     "@types/qs": "6.9.7",

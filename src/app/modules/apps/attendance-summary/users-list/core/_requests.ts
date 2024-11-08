@@ -46,16 +46,6 @@ const deleteSelectedUsers = (userIds: Array<ID>): Promise<void> => {
   return axios.all(requests).then(() => {});
 };
 
-const checkUsername = async (username: string): Promise<boolean> => {
-  const response = await axios.post(`${API_URL}/check-username`, { username });
-  return response.data.username_exists; // Assuming response.data contains username_exists
-};
-
-const checkEmail = async (email: string): Promise<boolean> => {
-  const response = await axios.post(`${API_URL}/check-email`, { email });
-  return response.data.email_exists; // Assuming response.data contains email_exists
-};
-
 export {
   getUsers,
   deleteUser,
@@ -63,6 +53,4 @@ export {
   getUserById,
   createUser,
   updateUser,
-  checkUsername,
-  checkEmail,
 };

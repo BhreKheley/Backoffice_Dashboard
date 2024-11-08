@@ -1,55 +1,72 @@
-import {Column} from 'react-table'
-import {UserInfoCell} from './UserInfoCell'
-import {UserLastLoginCell} from './UserLastLoginCell'
-import {UserTwoStepsCell} from './UserTwoStepsCell'
-import {UserActionsCell} from './UserActionsCell'
-import {UserSelectionCell} from './UserSelectionCell'
-import {UserCustomHeader} from './UserCustomHeader'
-import {UserSelectionHeader} from './UserSelectionHeader'
-import {User} from '../../core/_models'
+import { Column } from "react-table";
+import { UserInfoCell } from "./UserInfoCell";
+import { UserActionsCell } from "./UserActionsCell";
+import { UserSelectionCell } from "./UserSelectionCell";
+import { UserCustomHeader } from "./UserCustomHeader";
+import { UserSelectionHeader } from "./UserSelectionHeader";
+import { User } from "../../core/_models";
+import { UserIsActiveCell } from "./UserIsActiveCell";
+import { string } from "yup";
 
 const usersColumns: ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <UserSelectionHeader tableProps={props} />,
-    id: 'selection',
-    Cell: ({...props}) => <UserSelectionCell id={props.data[props.row.index].id} />,
-  },
-  {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Name' className='min-w-125px' />,
-    id: 'name',
-    Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
-  },
-  {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Role' className='min-w-125px' />,
-    accessor: 'role',
+    id: "selection",
+    Cell: ({ ...props }) => (
+      <UserSelectionCell id={props.data[props.row.index].id} />
+    ),
   },
   {
     Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Last login' className='min-w-125px' />
+      <UserCustomHeader
+        tableProps={props}
+        title="Name"
+        className="min-w-125px"
+      />
     ),
-    id: 'last_login',
-    Cell: ({...props}) => <UserLastLoginCell last_login={props.data[props.row.index].last_login} />,
+    id: "name",
+    Cell: ({ ...props }) => <UserInfoCell user={props.data[props.row.index]} />,
   },
   {
     Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Two steps' className='min-w-125px' />
+      <UserCustomHeader
+        tableProps={props}
+        title="Role"
+        className="min-w-125px"
+      />
     ),
-    id: 'two_steps',
-    Cell: ({...props}) => <UserTwoStepsCell two_steps={props.data[props.row.index].two_steps} />,
+    accessor: "role_name",
   },
   {
     Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Joined day' className='min-w-125px' />
+      <UserCustomHeader
+        tableProps={props}
+        title="Status"
+        className="min-w-125px"
+      />
     ),
-    accessor: 'joined_day',
+    id: "is_active",
+    Cell: ({ ...props }) => (
+      <UserIsActiveCell is_active={props.data[props.row.index].is_active} />
+    ),
   },
   {
     Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Actions' className='text-end min-w-100px' />
+      <UserCustomHeader
+        tableProps={props}
+        title="Actions"
+        className="text-end min-w-100px"
+      />
     ),
-    id: 'actions',
-    Cell: ({...props}) => <UserActionsCell id={props.data[props.row.index].id} />,
+    id: "actions",
+    Cell: ({ ...props }) => (
+      <UserActionsCell
+        id={props.data[props.row.index].id}
+        role_name={props.data[props.row.index].role_name}
+        is_active={props.data[props.row.index].is_active}
+      />
+    ),
   },
-]
+];
 
-export {usersColumns}
+export { usersColumns };
