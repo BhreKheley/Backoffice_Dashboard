@@ -8,7 +8,7 @@ const api_url = import.meta.env.VITE_APP_API_URL_LOCAL;
 export const GET_USER_BY_ACCESSTOKEN_URL = `${api_url}/auth/get-user-by-token`;
 
 // export const LOGIN_URL = `${API_URL}/login`;
-export const LOGIN_URL = `${api_url}/auth/login`;
+export const LOGIN_URL = `${api_url}/auth/login/backoffice`;
 export const REGISTER_URL = `${API_URL}/register`;
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`;
 
